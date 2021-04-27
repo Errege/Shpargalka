@@ -1,0 +1,8 @@
+ var file = new OpenFileDialog();
+            file.Filter =
+               "Image files ( *.JPG,  *.PNG)|*.jpg;*.png;";
+            if (file.ShowDialog() == true)
+            {
+                IMG.Source = new BitmapImage(new Uri(file.FileName));
+                test.IMAGE = File.ReadAllBytes(file.FileName);
+            }

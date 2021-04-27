@@ -1,0 +1,30 @@
+ <ListView x:Name="view" Grid.Column="1" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                   Grid.RowSpan="2" >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                        <Grid Margin="20" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="1" Width="200" Height="200">
+                                <Image.Source>
+                                    <Binding Path="IMAGE">
+                                        <Binding.TargetNullValue>
+                                            C:\Users\stepa\source\repos\NEWVIEW\Resource\4.jpg
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock Grid.Row="0" Text="{Binding NAME,StringFormat={}Номер: {0}}"></TextBlock>
+                            <Button x:Name="btn" Click="Button_Click_2" Grid.Row="2" Width="150" Height="40" Content="Edit" FontSize="16"></Button>
+                        </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>

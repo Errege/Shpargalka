@@ -1,0 +1,14 @@
+ System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            timer.Interval = new TimeSpan(0, 0, 5);
+            timer.Tick += new EventHandler(timerTick);
+            timer.Start();
+        }
+
+        private void timerTick (object sender, EventArgs e)
+        {
+            Class1.MainFrame.Navigate(new Captcha());
+            timer.Stop();
+            
+        }

@@ -1,0 +1,3 @@
+ var item = Class1.entities.TEST_TABLE.ToList();
+            view.ItemsSource = item.Where(d => d.NAME.ToLower().Contains(Source_text.Text.ToLower())).ToList();
+            Count.Content = $"Выведенно {(view.Items.Cast<TEST_TABLE>().Count().ToString())}  из {(Class1.entities.TEST_TABLE.Count().ToString())}";

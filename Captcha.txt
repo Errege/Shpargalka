@@ -1,0 +1,39 @@
+var chars = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
+
+            var generatedCaptcha = "";
+
+            var random = new Random();
+
+            for (int i = 0; i < 6; i++)
+            {
+                generatedCaptcha += (chars.ToCharArray()[random.Next(chars.Length)].ToString());
+            }
+
+            Cap.Text = generatedCaptcha;
+
+
+
+ var chars = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890@#$%^&*()";
+
+            var generatedCaptcha = "";
+
+            var random = new Random();
+
+            for (int i = 0; i < random.Next(4, 9); i++)
+            {
+                generatedCaptcha += (chars.ToCharArray()[random.Next(chars.Length)].ToString());
+            }
+
+            var pixels = new byte[256 * 256 * 4];
+            random.NextBytes(pixels);
+            var bitmapSource = BitmapSource.Create(200, 60, 96, 96, PixelFormats.Pbgra32, null, pixels, 200 * 4);
+            var visual = new DrawingVisual();
+            using (DrawingContext drawingContext = visual.RenderOpen())
+            {
+                drawingContext.DrawImage(bitmapSource, new Rect(0, 0, 200, 60));
+                drawingContext.DrawText(new FormattedText(generatedCaptcha, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, new Typeface("Segoe UI"), 32, Brushes.DarkCyan), new Point(random.Next(20),random.Next(20)));
+            }
+            CaptchaImage.Source = new DrawingImage(visual.Drawing);
+
+
+

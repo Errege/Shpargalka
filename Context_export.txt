@@ -1,0 +1,2 @@
+ var newwindow = new Add((sender as Button).DataContext as TEST_TABLE);
+            newwindow.Show();

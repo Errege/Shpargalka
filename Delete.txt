@@ -1,0 +1,17 @@
+ var delete = view.SelectedItems.Cast<TEST_TABLE>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {delete.Count()} элементы?", "Внимание",
+                   MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Class1.entities.TEST_TABLE.RemoveRange(delete);
+                    Class1.entities.SaveChanges();
+                    MessageBox.Show("Данные удалены!");
+                    view.ItemsSource = Class1.entities.TEST_TABLE.ToList();
+                    Count.Content = "Выведенно " + (view.Items.Cast<TEST_TABLE>().Count().ToString()) + " из " + (Class1.entities.TEST_TABLE.Count().ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }

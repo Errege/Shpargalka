@@ -1,0 +1,23 @@
+            var textfile = File.ReadAllLines(@"C:\Users\stepa\OneDrive\Рабочий стол\News.txt");
+            var images = Directory.GetFiles(@"C:\Users\stepa\OneDrive\Рабочий стол\images");
+
+            foreach (var line in textfile)
+            {
+                var data = line.Split('\t');
+                var newdata = new TEST_TABLE
+                {
+                    NAME = data[0].Replace("\"", " "),
+                    SURNAME = data[1].ToString(),
+                };
+
+                try
+                {
+                    newdata.IMAGE = File.ReadAllBytes(images.FirstOrDefault(d => d.Contains(newdata.NAME)));
+                    Class1.entities.TEST_TABLE.Add(newdata);
+                    Class1.entities.SaveChanges();
+                }
+                catch
+                {
+
+                }
+            }
