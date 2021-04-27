@@ -1,0 +1,26 @@
+ private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var ser = Fra.context.MATERIAL.ToList();
+            ser = ser.Where(d => d.NAME.ToString().ToLower().Contains(Search.Text.ToLower()) ||
+                d.DESCRIPTION.ToString().ToLower().Contains(Search.Text.ToLower())).ToList();
+            Fra.glob = ser.Where(d => d.ID_TYPE_MATERIAL == (Tips.SelectedIndex)).ToList();
+            LView.ItemsSource = Fra.glob;
+
+            Fra.te.Text = $"Выведено {LView.Items.Cast<MATERIAL>().Count().ToString()} из {Fra.context.MATERIAL.Count().ToString()}";
+        }
+       
+
+        private void Tips_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var zar = Fra.context.MATERIAL.ToList();
+            if (Tips.SelectedIndex > 0)
+                zar = zar.Where(d => d.ID_TYPE_MATERIAL == (Tips.SelectedIndex)).ToList();
+            Fra.glob = zar.Where(d => d.NAME.ToString().ToLower().Contains(Search.Text.ToLower()) ||
+                d.DESCRIPTION.ToString().ToLower().Contains(Search.Text.ToLower())).ToList();
+            LView.ItemsSource = Fra.glob;
+            
+            Fra.te.Text = $"Выведено {LView.Items.Cast<MATERIAL>().Count().ToString()} из {Fra.context.MATERIAL.Count().ToString()}";
+        }
+
+
+public static List<MATERIAL> glob = new List<MATERIAL>();
